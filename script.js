@@ -95,3 +95,91 @@ const angolo = (gradi) => {
 }
 
 console.log(acronimo(frase1))
+
+// Esercizi extra
+
+// 1. Partendo da una stringa (passata come parametro), ritorna il carattere più usato nella stringa stessa.
+
+function maxChar(str) {
+    const charMap = {};
+    let max = 0;
+    let maxChar = '';
+  
+    // create character map
+    for (let char of str) {
+      if (charMap[char]) {
+        // increment the character's value if the character existed in the map
+        charMap[char]++;
+      } else {
+        // Otherwise, the value of the character will be increamented by 1
+        charMap[char] = 1;
+      }
+    }
+  
+    // find the most commonly used character
+    for (let char in charMap) {
+      if (charMap[char] > max) {
+        max = charMap[char];
+        maxChar = char;
+      }
+    }
+  
+    return maxChar;
+  }
+
+console.log(maxChar("372637823"))
+
+// 2. Controlla che due stringhe passate come parametri siano gli anagrammi l’una dell’altra. 
+//Ignora punteggiatura e spazi e ricordate di rendere la stringa tutta in minuscolo. 
+//Se le due parole sono anagrammi, ritorna true , altrimenti ritorna `false`.
+
+function areAnagram(str1,str2)
+{
+    // Get lengths of both strings
+    let n1 = str1.length;
+    let n2 = str2.length;
+   
+    // If length of both strings is not
+    // same, then they cannot be anagram
+    if (n1 != n2)
+        return false;
+   
+    // Sort both strings
+    str1.sort();
+    str2.sort()
+   
+    // Compare sorted strings
+    for (let i = 0; i < n1; i++)
+        if (str1[i] != str2[i])
+            return false;
+   
+    return true;
+}
+     
+// Driver Code
+let str1=['t', 'e', 's', 't'];
+let str2=['t', 't', 'e', 'w'];
+     
+// Function Call
+if (areAnagram(str1, str2))
+    document.write(
+    "The two strings are" +
+    " anagram of each other<br>");
+else
+    document.write(
+    "The two strings are not" +
+    " anagram of each other<br>");
+
+// 3. Partendo da una lista di possibili anagrammi e da una parola (entrambi passati come parametri),
+//ritorna un nuovo array contenente tutti gli anagrammi corretti della parola data.
+// Per esempio, partendo da “cartine” e [”carenti”, “incerta”, “espatrio”], il valore ritornato deve essere [”carenti”, “incerta”].
+
+const findAnagrammi = (array, word) => {
+    const possible = []
+    for (const anagramma of array) {
+      if (anagramma(word, anagramma)) {
+        possible.push(anagramma)
+      }
+    }
+    return possible
+  }
